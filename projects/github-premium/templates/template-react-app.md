@@ -73,6 +73,7 @@ npm run build
 ---
 
 ## 📞 Контакты
-- Канал поддержки: {{SUPPORT_CHANNEL}}
-- Чат разработки: {{DEV_CHAT}}
-- Почта: lab@shtab-ai.ru
+- Канал поддержки: @DoctorMES
+- Чат разработки: @DoctorMES
+- Почта: thedoctormes@gmail.com
+- Telegram: @DoctorMES
