@@ -5,6 +5,7 @@
 .env.local
 .env.*.local
 tokens.env
+vpnconfig/*.json
 
 # Python
 __pycache__/
