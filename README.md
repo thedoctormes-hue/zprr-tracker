@@ -1,165 +1,103 @@
-# 🏥 LabDoctorM
-### *Клинико-диагностическая лаборатория | Автоматизация будущего*
+<!-- BANNER -->
+<div align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=200&section=header&text=DoctorM%26Ai&fontSize=60&fontAlignY=35&animation=twinkling&desc=AI%20Systems%20That%20Work%20While%20You%20Sleep&descAlignY=55" />
+  
+  <h2>🏥 Medical Doctor • 🤖 AI Evangelist • ⚡ Agent Architect</h2>
+  <p><em>Лаборатория | AntColony | ZPRR Research</em></p>
+
+  <!-- CI Badges -->
+  <p>
+    <img src="https://github.com/thedoctormes-hue/zprr-tracker/actions/workflows/ci.yml/badge.svg" alt="CI" />
+    <img src="https://github.com/thedoctormes-hue/zprr-tracker/actions/workflows/secret-scan.yml/badge.svg" alt="Security" />
+    <img src="https://img.shields.io/badge/Python-3.11-blue?logo=python" />
+    <img src="https://img.shields.io/badge/FastAPI-0.115-green?logo=fastapi" />
+    <img src="https://img.shields.io/badge/React-18-61DAFB?logo=react" />
+    <img src="https://img.shields.io/badge/Docker-24-2496ED?logo=docker" />
+  </p>
+</div>
+
+---
+
+## 🎯 Что я строю
 
 <div align="center">
 
-![LabDoctorM Banner](https://raw.githubusercontent.com/thedoctormes-hue/shtab-ai-gb52/main/projects/github-premium/profile-header.png)
-
-```
-╔══════════════════════════════════════════════════════════════════╗
-║  🧬 LAB DOCTOR M • МЕДЛАБОРАТОРИЯ БУДУЩЕГО • FUTURE LAB        ║
-╚══════════════════════════════════════════════════════════════════╝
-```
-
-[![Python](https://img.shields.io/badge/python-3.10%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.100%2B-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
-[![aiogram](https://img.shields.io/badge/aiogram-3.0%2B-2CA5E0?logo=telegram&logoColor=white)](https://docs.aiogram.dev/)
-[![React](https://img.shields.io/badge/React-18%2B-61DAFB?logo=react&logoColor=black)](https://react.dev/)
-[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker&logoColor=white)](https://docker.com)
-[![CI/CD](https://img.shields.io/badge/GitHub_Actions-AutoDeploy-2088FF?logo=githubactions&logoColor=white)](https://github.com/features/actions)
-
-[![CI](https://github.com/thedoctormes-hue/shtab-ai-gb52/actions/workflows/python-app.yml/badge.svg)](https://github.com/thedoctormes-hue/shtab-ai-gb52/actions/workflows/python-app.yml)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-
-[![GitHub last commit](https://img.shields.io/github/last-commit/thedoctormes-hue/shtab-ai-gb52?style=flat&color=blue&logo=github)](https://github.com/thedoctormes-hue/shtab-ai-gb52)
-[![GitHub repo size](https://img.shields.io/github/repo-size/thedoctormes-hue/shtab-ai-gb52?style=flat&color=green&logo=github)](https://github.com/thedoctormes-hue/shtab-ai-gb52)
-[![GitHub stars](https://img.shields.io/github/stars/thedoctormes-hue/shtab-ai-gb52?style=flat&color=yellow&logo=github)](https://github.com/thedoctormes-hue/shtab-ai-gb52/stargazers)
+| 🛠️ **AntColony** | 🤖 Self-evolving multi-agent system на Qwen Code<br>VPN на **60k** пользователей в продакшене |
+|---|---|
+| 🎯 **Polyp Detection** | 🔬 AI детекция полипов в реальном времени<br>Готовый продукт для эндоскопий |
+| 👶 **ZPRR Tracker** | 📊 Научный подход к речевому развитию детей<br>с ЗПРР (Задержкой Психического Развития Речи) |
 
 </div>
 
 ---
 
-## 🚀 TL;DR — Что это?
+## 💡 Уникальное пересечение
 
-> **LabDoctorM** — экосистема автоматизации лабораторных процессов и инфраструктуры. Мы строим роботов, которые работают за людей, экономя сотни человеко-часов еженедельно.
+<div align="center">
 
 ```
-💡 Автоматизация → 📈 Экономия времени → 💰 Экономия денег
+🏥 МЕДИЦИНА → 15 лет лаборатории, лицензирование, COVID кризис
+                    ↓
+🤖 AI/IT     → Агентные системы, ML, Telegram боты, LLM
+                    ↓
+💰 ПРОДАЖИ  → Вау-эффект, сложное просто, решаю нерешаемое
 ```
 
----
+**Монетизация навыков:** Медицинский опыт + AI-реализация = Продажи под ключ
 
-## 🎯 Фокус проекта
-
-| 📊 | 60K клиентов | VPN-инфраструктура |
-|:---:|:---:|:---:|
-| 🏥 | Клинико-диагностическая лаборатория | Автоматизация бизнес-процессов |
-| 🤖 | 7 Telegram-ботов в продакшене | Интеграция с LLM (GPT, Claude, Gemini) |
-| 🌐 | 3 дата-центра (Warsaw, Florida, RF) | Мониторинг в реальном времени |
+</div>
 
 ---
 
-## 🛠️ Экосистема проектов
+## 🛠️ Технологический стек
 
-### 🤖 Telegram Боты (7 активных)
+<div align="center">
 
-| Бот | Описание | Статус |
-|:---|:---|:---:|
-| [📡 **vpn-daemon**](https://github.com/LabDoctorM/vpn-daemon) | Управление VPN для 60k клиентов | ✅ В проде |
-| [📧 **mail-daemon**](https://github.com/LabDoctorM/mail-daemon) | Почтовые уведомления и обработка | ✅ В проде |
-| [👨‍💼 **stenographer**](https://github.com/LabDoctorM/stenographer) | Стенография встреч | ✅ В проде |
-| [🤖 **llm-evangelist**](https://github.com/LabDoctorM/llm-evangelist) | Авто-ревью LLM моделей | ✅ В проде |
-| [📊 **syncthing-dashboard**](https://dashboard.shtab-ai.ru) | Мониторинг синхронизации | ✅ В проде |
-| [🔌 **os-lab-api**](https://github.com/LabDoctorM/os-lab-api) | API мониторинга серверов | ✅ В проде |
-| [📖 **protocol-bot**](https://t.me/Protocolstandbot) | Личная память и протоколы | ✅ В проде |
+![Python](https://img.shields.io/badge/python-3.11-3670A0?style=for-the-badge&logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-009688?style=for-the-badge&logo=fastapi&logoColor=white)
+![React](https://img.shields.io/badge/react-18-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/typescript-5.0-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/postgresql-15-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
 
-### 🌐 Веб-Приложения
+![Qwen Code](https://img.shields.io/badge/Qwen%20Code-Agent-0084FF?style=for-the-badge)
+![OpenRouter](https://img.shields.io/badge/OpenRouter-LLM%20Router-FF6B35?style=for-the-badge)
+![Docker](https://img.shields.io/badge/docker-ready-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![Kubernetes](https://img.shields.io/badge/kubernetes-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white)
 
-| Приложение | Технологии | Статус |
-|:---|:---|:---:|
-| [**shtab-ai.ru**](https://shtab-ai.ru) | Landing page | ✅ Онлайн |
-| [**dashboard.shtab-ai.ru**](https://dashboard.shtab-ai.ru) | React + FastAPI | ✅ Онлайн |
-| **os-lab-api** | FastAPI + SQLite | ✅ На 8002 порту |
+</div>
 
 ---
 
-## 🔌 API Endpoints
+## 📊 Достижения
 
-• `GET /api/v1/servers` — Server monitoring data
-• `GET /api/v1/vpn/status` — VPN cluster status  
-• `GET /api/v1/bots` — Bot fleet metrics
-• `GET /health` — Health check endpoint
+<div align="center">
 
----
+| 🏆 Показатель | 📈 Значение | 🎯 Год |
+|---|---|---|
+| VPN Пользователи | **60,000+** в продакшене | 2024 |
+| LLM Моделей | **50+** проанализировано | 2024 |
+| Агентные Системы | **24/7** работа без перебоев | 2025 |
+| Медицинские Проекты | **15+** лет опыта | 2010-2025 |
 
-## ⚡ Быстрый старт
-
-### 🔧 Требования
-
-```bash
-python3.10+   # Backend сервисы
-nodejs + npm  # Frontend приложения
-systemd       # Управление сервисами
-```
-
-### 🚀 Установка
-
-```bash
-# Клонирование
-git clone https://github.com/thedoctormes-hue/shtab-ai-gb52.git
-cd shtab-ai-gb52
-
-# Python зависимости
-pip install -r requirements.txt
-
-# Frontend (для веб-приложений)
-cd projects/web-apps/syncthing-dashboard
-npm install
-npm run build
-```
-
-### 🏃‍♂️ Запуск сервисов
-
-```bash
-# Backend — через systemd
-systemctl restart <service-name>
-
-# Frontend — через nginx
-npm run build && rsync -av dist/ /var/www/<project>/
-```
+</div>
 
 ---
 
-## 🔄 CI/CD
+## 📬 Контакты
 
-- **Автоматический деплой** при push в `main` ветку
-- **GitHub Actions** проверяют код на каждый PR
-- **Docker-ready** для масштабирования
+<div align="center">
 
----
+[![Telegram](https://img.shields.io/badge/Telegram-@DoctorMES-26A5E4?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/DoctorMES)
+[![Email](https://img.shields.io/badge/Email-thedoctormes@gmail.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:thedoctormes@gmail.com)
+[![Phone](https://img.shields.io/badge/Phone-+79032749274-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](tel:+79032749274)
+[![Website](https://img.shields.io/badge/shtab--ai.ru-Website-4285F4?style=for-the-badge&logo=google-chrome&logoColor=white)](https://shtab-ai.ru)
 
-## 📡 Мониторинг
-
-| 📍 Локация | 🖥️ Серверы | 🎯 Статус |
-|:---|:---|:---:|
-| Warsaw | Основной центр | ✅ Онлайн |
-| Florida | Резервный центр | ✅ Онлайн |
-| RF Proxy | Обход DPI | ✅ Онлайн |
-
----
-
-## 🤝 Contributing
-
-1. Форкнуть репозиторий
-2. Создать ветку `feature/имя-фичи`
-3. Внести изменения (соблюдая [Conventional Commits](https://www.conventionalcommits.org/))
-4. Создать Pull Request
-
----
-
-## 📞 Контакты
-
-| 📱 Канал | 🔗 Ссылка |
-|:---|:---:|
-| 🌐 Сайт | [shtab-ai.ru](https://shtab-ai.ru) |
-| 💬 Telegram | [@LabDoctorM](https://t.me/LabDoctorM) |
-| 🐙 GitHub | [@thedoctormes-hue](https://github.com/thedoctormes-hue) |
+</div>
 
 ---
 
 <div align="center">
-
-**💎 Invest 2 minutes in setup — save hours every week**
-*Made with ❤️ in LabDoctorM Laboratory*
-
+  <img src="https://quotes-github-readme.vercel.app/api?type=horizontal&theme=dark&quote=Я%20строю%20AI%20системы%20которые%20работают%20пока%20вы%20спите...&author=DoctorM%26Ai" />
+  
+  <p><i>Медицинский опыт + техническая реализация под ключ = Решения которые продаются сами</i></p>
 </div>
