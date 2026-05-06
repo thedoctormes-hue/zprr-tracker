@@ -1,0 +1,16 @@
+[Unit]
+Description=FedLab Semantic Parser Service
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/LabDoctorM/fedlab_parser
+Environment="PATH=/root/LabDoctorM/venv/bin"
+Environment="PYTHONUNBUFFERED=1"
+ExecStart=/root/LabDoctorM/venv/bin/python service.py schedule
+Restart=always
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="format-detection" content="telephone=no">
+    <title>Stenographer AI • Загрузка файлов</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        :root { --mdc-theme-primary: #2ea043; --mdc-theme-secondary: #58a6ff; --mdc-theme-background: #0d1117; --mdc-theme-surface: #161b22; --mdc-theme-on-surface: #e6edf3; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Roboto', sans-serif; background: var(--mdc-theme-background); color: var(--mdc-theme-on-surface); min-height: 100vh; padding: 16px; }
+        .container { max-width: 500px; margin: 0 auto; }
+        .header { text-align: center; margin-bottom: 24px; }
+        .header h1 { font-size: 24px; font-weight: 500; margin-bottom: 8px; background: linear-gradient(90deg, #58a6ff, #2ea043); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .upload-area { background: var(--mdc-theme-surface); border: 2px dashed #30363d; border-radius: 12px; padding: 32px 16px; text-align: center; margin-bottom: 24px; cursor: pointer; }
+        .upload-icon { font-size: 48px; color: var(--mdc-theme-primary); margin-bottom: 16px; }
+        .file-info { background: var(--mdc-theme-surface); border-radius: 12px; padding: 16px; margin-bottom: 16px; display: none; }
+        .file-info.active { display: block; }
+        .file-name { font-weight: 500; margin-bottom: 8px; word-break: break-all; }
+        .file-size { font-size: 12px; color: #8b949e; }
+        .progress-container { background: var(--mdc-theme-surface); border-radius: 12px; padding: 20px; margin-bottom: 24px; display: none; }
+        .progress-container.active { display: block; }
+        .progress-bar { background: #21262d; border-radius: 8px; height: 8px; overflow: hidden; margin-bottom: 12px; }
+        .progress-fill { background: linear-gradient(90deg, var(--mdc-theme-primary), var(--mdc-theme-secondary)); height: 100%; width: 0%; transition: width 0.3s ease; }
+        .status-chip { display: inline-block; padding: 4px 12px; border-radius: 16px; font-size: 12px; font-weight: 500; margin-top: 8px; }
+        .status-pending { background: #21262d; color: #8b949e; }
+        .status-uploading { background: rgba(88, 166, 255, 0.2); color: #58a6ff; }
+        .status-processing { background: rgba(255, 193, 7, 0.2); color: #ffc107; }
+        .status-complete { background: rgba(46, 160, 67, 0.2); color: #2ea043; }
+        .status-error { background: rgba(248, 81, 73, 0.2); color: #f85149; }
+        .btn-upload { width: 100%; padding: 16px; background: linear-gradient(90deg, var(--mdc-theme-primary), var(--mdc-theme-secondary)); color: white; border: none; border-radius: 12px; font-size: 16px; font-weight: 500; cursor: pointer; margin-bottom: 12px; }
+        .btn-process { width: 100%; padding: 16px; background: #21262d; color: #58a6ff; border: 1px solid #30363d; border-radius: 12px; font-size: 16px; font-weight: 500; cursor: pointer; }
+        .btn-upload:disabled { opacity: 0.5; cursor: not-allowed; }
+        .hidden { display: none !important; }
+        #debug-panel { position: fixed; bottom: 0; left: 0; right: 0; background: #161b22; color: #e6edf3; padding: 8px; font-size: 12px; max-height: 150px; overflow-y: auto; z-index: 9999; }
+        #debug-panel .entry { margin: 2px 0; }
+        #debug-panel .error { color: #f85149; }
+        #debug-panel .success { color: #2ea043; }
+        .success-box { background: rgba(46, 160, 67, 0.1); border: 1px solid #2ea043; border-radius: 12px; padding: 16px; margin-bottom: 16px; display: none; }
+        .success-box.active { display: block; }
+        .upload-id { font-family: monospace; font-size: 12px; color: #58a6ff; word-break: break-all; background: #21262d; padding: 8px; border-radius: 4px; margin-top: 8px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header"><h1>🎙️ Stenographer AI</h1><p>Говори — мы расшифровываем</p></div>
+        <div class="upload-area" id="dropZone">
+            <div class="upload-icon"><span class="material-icons">cloud_upload</span></div>
+            <h3>Нажмите или перетащите файл</h3>
+            <p style="color: #8b949e; margin-top: 8px;">Поддерживаются: MP3, WAV, M4A, AAC, FLAC, OGG, OPUS, MP4, MOV, AVI, MKV, WEBM<br><strong>Максимум: 2GB (только до 20MB для транскрипции)</strong></p>
+            <input type="file" id="fileInput" accept="audio/*,video/*,.mp3,.wav,.m4a,.aac,.flac,.ogg,.opus,.mp4,.mov,.avi,.mkv,.webm" style="display: none;">
+        </div>
+        <div class="file-info" id="fileInfo"><div class="file-name" id="fileName"></div><div class="file-size" id="fileSize"></div></div>
+        <div class="progress-container" id="progressContainer">
+            <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+            <div class="progress-text"><span id="progressPercent">0%</span><span id="progressStatus">Подготовка...</span></div>
+        </div>
+        <div class="status-chip status-pending hidden" id="statusChip">Готово к загрузке</div>
+        <button class="btn-upload" id="uploadBtn" disabled><span class="material-icons" style="vertical-align: middle; margin-right: 8px;">upload</span>Начать загрузку</button>
+        <div class="success-box" id="successBox">
+            <div style="color: #2ea043; font-weight: 500; margin-bottom: 8px;">✅ Файл успешно загружен!</div>
+            <div style="font-size: 14px; margin-bottom: 8px;">Upload ID: <span id="uploadId" class="upload-id"></span></div>
+            <div style="font-size: 14px; color: #8b949e; margin-bottom: 12px;">Отправьте боту:</div>
+            <div id="botCommand" class="upload-id" style="background: #0d1111;"></div>
+            <button class="btn-process" id="copyBtn" style="margin-top: 12px;">📋 Скопировать команду</button>
+        </div>
+    </div>
+    <div id="debug-panel"></div>
+
+    <script>
+window.onerror = function(msg, url, line, col, err) { document.getElementById('debug-panel').innerHTML += '<div class="entry error">[ERROR] ' + msg + ' at ' + line + '</div>'; return false; };
+window.addEventListener('unhandledrejection', e => { document.getElementById('debug-panel').innerHTML += '<div class="entry error">[PROMISE] ' + e.reason + '</div>'; });
+
+(function() {
+    'use strict';
+    const log = (msg, type) => document.getElementById('debug-panel').innerHTML += '<div class="entry ' + (type || 'log') + '">[' + new Date().toLocaleTimeString() + '] ' + msg + '</div>';
+    log('Init...');
+
+    const el = { btn: document.getElementById('uploadBtn'), dropZone: document.getElementById('dropZone'), fileInput: document.getElementById('fileInput'), 
+               fileName: document.getElementById('fileName'), fileSize: document.getElementById('fileSize'), fileInfo: document.getElementById('fileInfo'),
+                 progressContainer: document.getElementById('progressContainer'), progressFill: document.getElementById('progressFill'), 
+                 progressPercent: document.getElementById('progressPercent'), progressStatus: document.getElementById('progressStatus'), 
+                 statusChip: document.getElementById('statusChip'), successBox: document.getElementById('successBox'),
+                 uploadId: document.getElementById('uploadId'), botCommand: document.getElementById('botCommand'), copyBtn: document.getElementById('copyBtn') };
+
+    el.btn.disabled = false; log('Button ENABLED', 'success');
+
+    const CHUNK_SIZE = 10 * 1024 * 1024;
+    const ALLOWED_EXTENSIONS = ['.mp3', '.wav', '.m4a', '.aac', '.flac', '.ogg', '.opus', '.mp4', '.mov', '.avi', '.mkv', '.webm'];
+    let selectedFile = null, tg = null, currentUploadId = null;
+
+    const getFileExt = f => { const e = f.name.toLowerCase().slice(((f.name.lastIndexOf(".") - 1) >>> 0) + 2); return e ? '.' + e : ''; };
+    const isValidFile = f => ALLOWED_EXTENSIONS.includes(getFileExt(f));
+    const updateProgress = (p, s) => { el.progressFill.style.width = p + '%'; el.progressPercent.textContent = p + '%'; el.progressStatus.textContent = s; };
+    const updateStatus = (t, st) => { el.statusChip.textContent = t; el.statusChip.className = 'status-chip status-' + st; el.statusChip.classList.remove('hidden'); };
+
+    const onFileSelect = (file) => {
+        if (!file) return;
+        log('File: ' + file.name + ' (' + file.size + ' bytes)');
+        if (!isValidFile(file)) { log('Invalid type: ' + getFileExt(file), 'error'); return; }
+        selectedFile = file;
+        el.fileName.textContent = file.name; el.fileSize.textContent = (file.size/1024/1024).toFixed(2) + ' MB';
+        el.fileInfo.classList.add('active'); el.btn.disabled = false; updateStatus('Готово к загрузке', 'pending');
+        log('File ready', 'success');
+    };
+
+    el.fileInput.addEventListener('change', e => onFileSelect(e.target.files[0]));
+    el.dropZone.addEventListener('click', () => { log('DropZone clicked'); el.fileInput.click(); });
+    el.dropZone.addEventListener('dragover', e => e.preventDefault());
+    el.dropZone.addEventListener('drop', e => { e.preventDefault(); onFileSelect(e.dataTransfer.files[0]); });
+
+    el.btn.addEventListener('click', async () => {
+        if (!selectedFile) return; log('=== UPLOAD START ==='); el.btn.disabled = true; el.progressContainer.classList.add('active');
+
+        try {
+            log('Requesting /api/upload/init');
+            const initRes = await fetch('/api/upload/init', {
+                method: 'POST', 
+                headers: { 'Content-Type': 'application/json', 'X-Telegram-Init-Data': tg?.initData || '' },
+                body: JSON.stringify({ filename: selectedFile.name, size: selectedFile.size, type: selectedFile.type, total_chunks: Math.ceil(selectedFile.size / CHUNK_SIZE) })
+            });
+            log('Init response: ' + initRes.status);
+            if (!initRes.ok) { const txt = await initRes.text(); throw new Error('Init failed: ' + initRes.status + ' ' + txt); }
+            const { upload_id } = await initRes.json(); log('Upload initialized: ' + upload_id, 'success');
+            currentUploadId = upload_id;
+
+            const totalChunks = Math.ceil(selectedFile.size / CHUNK_SIZE);
+            log('Total chunks: ' + totalChunks);
+            updateStatus('Загрузка...', 'uploading');
+            
+            // Parallel upload: 3 chunks at once
+            const CONCURRENT = 3;
+            for (let i = 0; i < totalChunks; i += CONCURRENT) {
+                const chunkPromises = [];
+                for (let j = 0; j < CONCURRENT && (i + j) < totalChunks; j++) {
+                    const chunkIdx = i + j;
+                    const chunk = selectedFile.slice(chunkIdx * CHUNK_SIZE, Math.min((chunkIdx + 1) * CHUNK_SIZE, selectedFile.size));
+                    const formData = new FormData(); formData.append('upload_id', upload_id); formData.append('chunk_index', chunkIdx); formData.append('chunk_data', chunk);
+                    log('Uploading chunk ' + chunkIdx + '/' + (totalChunks-1));
+                    chunkPromises.push(fetch('/api/upload/chunk', { method: 'POST', headers: { 'X-Telegram-Init-Data': tg?.initData || '' }, body: formData }));
+                }
+                const results = await Promise.all(chunkPromises);
+                for (let k = 0; k < results.length; k++) {
+                    const chunkIdx = i + k;
+                    log('Chunk ' + chunkIdx + ' response: ' + results[k].status);
+                    if (!results[k].ok) { const txt = await results[k].text(); throw new Error('Chunk ' + chunkIdx + ' failed: ' + txt); }
+                    updateProgress(Math.round((chunkIdx + 1)/totalChunks*100), 'Часть ' + (chunkIdx + 1) + '/' + totalChunks);
+                }
+            }
+
+            log('Requesting /api/upload/complete');
+            const compRes = await fetch('/api/upload/complete', {
+                method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Telegram-Init-Data': tg?.initData || '' },
+                body: JSON.stringify({ upload_id })
+            });
+            log('Complete response: ' + compRes.status);
+            if (!compRes.ok) { const txt = await compRes.text(); throw new Error('Complete failed: ' + compRes.status + ' ' + txt); }
+            
+            // Show success with auto-copy
+            el.successBox.classList.add('active');
+            el.uploadId.textContent = upload_id;
+            el.botCommand.textContent = '/upload_' + upload_id;
+            
+            // Auto-copy command
+            navigator.clipboard.writeText('/upload_' + upload_id).then(() => {
+                log('Command auto-copied', 'success');
+            }).catch(() => log('Manual copy needed', 'error'));
+            
+            log('Upload complete!', 'success');
+            updateStatus('Готово к обработке', 'complete');
+            if (tg?.showAlert) tg.showAlert('✅ Файл загружен! Команда скопирована: /upload_' + upload_id);
+        } catch (e) { log('ERROR: ' + e.message, 'error'); updateStatus('Ошибка загрузки', 'error'); el.btn.disabled = false; }
+    });
+
+    el.copyBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText('/upload_' + currentUploadId);
+        el.copyBtn.textContent = '✅ Скопировано!';
+        setTimeout(() => el.copyBtn.textContent = '📋 Скопировать команду', 2000);
+    });
+
+    (async () => {
+        let resolved = false; const timer = setTimeout(() => { if (!resolved) { resolved = true; tg = null; log('Telegram timeout'); } }, 2000);
+        const check = () => { 
+            if (!resolved && window.Telegram?.WebApp) { 
+                resolved = true; clearTimeout(timer); tg = window.Telegram.WebApp; 
+                try { tg.expand(); tg.ready(); } catch(e){} 
+                if (tg.MainButton) { tg.MainButton.setText('📁 Выбрать файл'); tg.MainButton.onClick(() => el.fileInput.click()); tg.MainButton.show(); }
+                log('Telegram WebApp ready');
+            } else if (!resolved) setTimeout(check, 100); 
+        };
+        check();
+    })();
+
+    log('App ready', 'success');
+})();
+    </script>
+</body>
+</html>

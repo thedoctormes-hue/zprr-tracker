@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Button Test</title>
+    <style>
+        .btn { padding: 20px; background: green; color: white; border: none; }
+        .btn:disabled { opacity: 0.5; }
+        #debug-panel { position: fixed; bottom: 0; background: #161b22; color: #e6edf3; padding: 10px; width: 100%; max-height: 200px; overflow-y: auto; }
+    </style>
+</head>
+<body>
+    <h1>Test Button</h1>
+    <button id="uploadBtn" class="btn" disabled>Начать загрузку</button>
+    <div id="debug-panel"></div>
+
+    <script>
+        const debugLog = (msg, type = 'log') => {
+            const panel = document.getElementById('debug-panel');
+            const entry = document.createElement('div');
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
+            panel.appendChild(entry);
+        };
+
+        // Test 1: Immediate unlock
+        debugLog('📋 Starting test...');
+        const btn = document.getElementById('uploadBtn');
+        debugLog('Button found: ' + !!btn);
+        
+        // IMMEDIATE UNLOCK like in index.html
+        if (btn) {
+            btn.disabled = false;
+            debugLog('✅ Button ENABLED', 'success');
+        }
+    </script>
+</body>
+</html>
