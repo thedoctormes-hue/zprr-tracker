@@ -14,22 +14,6 @@
       ]
     },
     {
-      "path": "archive",
-      "llm_usage": true,
-      "detected_patterns": [
-        "model_string",
-        "model_constant"
-      ],
-      "models_used": [
-        "google/gemini-2.0-flash-001",
-        "mistralai/mistral-nemo",
-        "google/gemini-2.5-flash-lite"
-      ],
-      "tasks": [
-        "chat"
-      ]
-    },
-    {
       "path": "OpenClawBox/app/providers",
       "llm_usage": true,
       "detected_patterns": [
@@ -73,20 +57,6 @@
         "anthropic/claude-3-haiku",
         "google/gemini-2.0-flash-001",
         "google/gemini-2.0-flash-lite-001"
-      ],
-      "tasks": [
-        "chat"
-      ]
-    },
-    {
-      "path": "archive/eva_forewa_bot",
-      "llm_usage": true,
-      "detected_patterns": [
-        "model_string",
-        "model_constant"
-      ],
-      "models_used": [
-        "google/gemini-2.0-flash-001"
       ],
       "tasks": [
         "chat"
@@ -149,5 +119,5 @@
       ]
     }
   ],
-  "updated": "Sat May  2 12:49:31 MSK 2026"
+  "updated": "Sun May  3 01:13:29 MSK 2026"
 }

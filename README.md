@@ -17,6 +17,8 @@
 [![React](https://img.shields.io/badge/React-18%2B-61DAFB?logo=react&logoColor=black)](https://react.dev/)
 [![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker&logoColor=white)](https://docker.com)
 [![CI/CD](https://img.shields.io/badge/GitHub_Actions-AutoDeploy-2088FF?logo=githubactions&logoColor=white)](https://github.com/features/actions)
+
+[![CI](https://github.com/thedoctormes-hue/shtab-ai-gb52/actions/workflows/python-app.yml/badge.svg)](https://github.com/thedoctormes-hue/shtab-ai-gb52/actions/workflows/python-app.yml)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 [![GitHub last commit](https://img.shields.io/github/last-commit/thedoctormes-hue/shtab-ai-gb52?style=flat&color=blue&logo=github)](https://github.com/thedoctormes-hue/shtab-ai-gb52)
@@ -68,6 +70,15 @@
 | [**shtab-ai.ru**](https://shtab-ai.ru) | Landing page | ✅ Онлайн |
 | [**dashboard.shtab-ai.ru**](https://dashboard.shtab-ai.ru) | React + FastAPI | ✅ Онлайн |
 | **os-lab-api** | FastAPI + SQLite | ✅ На 8002 порту |
+
+---
+
+## 🔌 API Endpoints
+
+• `GET /api/v1/servers` — Server monitoring data
+• `GET /api/v1/vpn/status` — VPN cluster status  
+• `GET /api/v1/bots` — Bot fleet metrics
+• `GET /health` — Health check endpoint
 
 ---
 

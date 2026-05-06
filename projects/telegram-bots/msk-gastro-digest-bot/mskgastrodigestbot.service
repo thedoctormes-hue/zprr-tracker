@@ -6,14 +6,14 @@ Wants=network-online.target
 [Service]
 Type=simple
 User=root
-WorkingDirectory=/root/LabDoctorM/@MSKgastroDigestbot
+WorkingDirectory=/root/LabDoctorM/projects/telegram-bots/msk-gastro-digest-bot
 Environment="PYTHONUNBUFFERED=1"
-ExecStart=/usr/bin/python3 /root/LabDoctorM/@MSKgastroDigestbot/main.py
+ExecStart=/usr/bin/python3 /root/LabDoctorM/projects/telegram-bots/msk-gastro-digest-bot/main.py
 Restart=always
 RestartSec=10
 
-StandardOutput=append:/root/LabDoctorM/@MSKgastroDigestbot/logs/stdout.log
-StandardError=append:/root/LabDoctorM/@MSKgastroDigestbot/logs/stderr.log
+StandardOutput=append:/root/LabDoctorM/projects/telegram-bots/msk-gastro-digest-bot/logs/stdout.log
+StandardError=append:/root/LabDoctorM/projects/telegram-bots/msk-gastro-digest-bot/logs/stderr.log
 
 [Install]
 WantedBy=multi-user.target

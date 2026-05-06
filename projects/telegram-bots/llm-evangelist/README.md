@@ -1,132 +1,169 @@
-# ![Telegram Bot AI Neon](/root/LabDoctorM/projects/github-premium/Telegram%20Bot%20AI%20Neon.PNG)
+# 📱 LLMevangelist — Telegram Бот для Анализа LLM Моделей
 
-# llm-evangelist
-
-![Telegram Bot](https://img.shields.io/badge/Telegram%20Bot-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white)
-![OpenRouter](https://img.shields.io/badge/OpenRouter-API-orange?style=for-the-badge)
-![Python](https://img.shields.io/badge/Python-3.10+-blue?style=for-the-badge&logo=python&logoColor=white)
-![Stars](https://img.shields.io/github/stars/LabDoctorM/llm-evangelist?style=for-the-badge)
-
-🤖 **Add to Telegram** → *[bot link placeholder — создайте бота и вставьте ссылку]*
-⭐ **Star this repo** to support AI-powered LLM reviews!
+> **Telegram Bot** → *[@LLMevangelist](https://t.me/LLMevangelist)*  
+> **Репозиторий** → *создайте бота и вставьте ссылку*  
+> **Лаборатория** → [LabDoctorM](https://github.com/LabDoctorM)
 
 ---
 
-## 🚀 Quick Start (2 min setup)
+## 🎯 Что это?
+
+**LLMevangelist** — Telegram-бот, который помогает выбирать оптимальные LLM модели под задачи. Бот объединяет три ключевых процесса:
+
+📊 **Daily Discovery** — ежедневный мониторинг новых моделей и трендов  
+🎯 **Task Profiling** — подбор модели под конкретную задачу  
+👨‍👩‍👧‍👦 **Family Analysis** — разбор семейств моделей и их особенностей  
+🏆 **Personal Rankings** — субъективные оценки качества и цены  
+
+---
+
+## ⚡ Быстрый старт (2 минуты)
 
 ```bash
-# Клонируем репозиторий
 git clone https://github.com/LabDoctorM/llm-evangelist.git
 cd llm-evangelist
 
-# Настраиваем переменные окружения
 cp .env.example .env
-# Откройте .env и добавьте свой OPENROUTER_API_KEY
+# Добавьте OPENROUTER_API_KEY и TELEGRAM_BOT_TOKEN
 
-# Устанавливаем зависимости и запускаем
 pip install -r requirements.txt
 python main.py
 ```
 
 ---
 
-## 🎯 What is this?
+## 🤖 Команды бота
 
-**llm-evangelist** — это Telegram-бот, который **экономит $500/мес** на ручном ревью LLM-моделей. Бот автоматически сравнивает ответы разных моделей через OpenRouter API, выявляя лидеров по качеству и цене.
+| Команда | Описание | Пример |
+|---------|----------|--------|
+| `/start` | Запуск и приветствие | — |
+| `/compare [type] [prompt]` | Сравнить ответы моделей | `/compare free Объясни квантовую запутанность` |
+| `/models` | Список моделей с ценами | — |
+| `/top` | Топ по цена/качество | — |
+| `/scan` | Сканировать проекты лаборатории | — |
+| `/analyze` | Самоанализ и рекомендации | — |
+| `/stats` | Статистика запросов | — |
+| `/history` | История запросов | — |
 
-**Финансовый эффект:**
-- ⚡ Конверсия в подписку OpenRouter **+15%** за счёт прозрачного сравнения
-- 📉 Сокращение времени выбора модели с 30 минут до 30 секунд
-- 💰 ROI инструмента: **10x** при регулярном использовании
-
----
-
-## ✨ Features
-
-✅ **Авторевью моделей** — бот сам запрашивает 5+ моделей и выдаёт сравнительный анализ  
-📊 **Статистика токенов** — точный подсчёт затрат для каждого запроса  
-🎨 **Визуализация качества** — ранжирование ответов по релевантности  
-🔍 **Deep Compare** — сравнение по 3 критериям: цена, скорость, качество  
-📈 **Трекинг популярности** — какие модели сейчас в топе у пользователей  
-🛡️ **Безопасность данных** — все ключи в `.env`, никаких утечек в логи  
-🇷🇺 **Полностью на русском** — код и интерфейс адаптированы под русскоязычных разработчиков
+**Типы моделей для `/compare`:**
+- `free` — только бесплатные (по умолчанию)
+- `paid` — только платные
+- `all` — все доступные
 
 ---
 
-## 🤖 Bot Commands
+## 🔄 Daily Discovery Workflow
 
-| Команда | Описание | Экономит время |
-|---------|----------|----------------|
-| `/start` | Запуск бота и приветствие | — |
-| `/compare [prompt]` | Сравнить ответы моделей на запрос | 20 мин/день |
-| `/models` | Список доступных моделей с ценами | 10 мин/неделю |
-| `/stats` | Ваша статистика запросов | — |
-| `/top` | Топ моделей по соотношению цена/качество | 15 мин/неделю |
-| `/help` | Справка по командам | — |
+Бот автоматически сканирует OpenRouter каждый день и формирует отчёт:
 
----
+```
+🔱 LLMevangelist Daily Report
+━━━━━━━━━━━━━━━━━━━━━━━
+📊 Всего моделей: 371
+💎 FREE моделей: 29
 
-## 📊 Part of LabDoctorM Ecosystem
+💎 ЛУЧШИЕ FREE:
+1. deepseek/deepseek-r1:free
+2. google/gemini-2.0-flash-exp:free
+3. qwen/qwen-3-30b-a3b:free
 
-llm-evangelist — один из инструментов экосистемы **LabDoctorM**, где мы создаём AI-решения, которые приносят деньги:
-
-- 🧪 **[Protocol](https://github.com/LabDoctorM/protocol)** — система персональной памяти с LLM-классификацией
-- 🛡️ **[VPNDaemonRobot](https://github.com/LabDoctorM/vpndaemonrobot)** — масштабирование VPN до 60k клиентов
-- 📡 **[Anti-DPI Legend](https://github.com/LabDoctorM/anti-dpi-legend)** — обход блокировок с помощью Xray/VLESS
-
----
-
-## 🧪 Testing
-
-```bash
-# Запуск тестов (если добавлены)
-pytest tests/ -v
-
-# Проверка стиля кода
-ruff check .
-
-# Тестирование подключения к OpenRouter
-python -m tests.test_openrouter
+🏢 Используют LLM:
+• projects/protocol — deepseek, qwen
+• projects/vpn-daemon — mistral, anthropic
 ```
 
 ---
 
-## 🛡️ Security
+## 🎯 Task Profiling — Как выбрать модель
 
-⚠️ **Важно:** Никогда не коммитьте файл `.env` в репозиторий!
+### Критерии выбора модели:
+
+**1. По типу задачи:**
+- 💬 **Чат-боты** → высокая скорость, хорошее понимание контекста
+- 📝 **Генерация текста** → креативность, следововение инструкциям
+- 💻 **Кодинг** → точность синтаксиса, понимание алгоритмов
+- 📊 **Анализ данных** → работа с таблицами, статистика
+
+**2. По бюджету:**
+- Free модели (29 доступно) — для тестирования и непродакшен задач
+- $1-2/1M токенов — для регулярного использования
+- $5+/1M токенов — только для критически важных задач
+
+**3. По скорости:**
+- Быстрые (<1s) — для интерактивных приложений
+- Средние (1-3s) — для пакетной обработки
+- Медленные (>3s) — для глубокого анализа
+
+---
+
+## 👨‍👩‍👧‍👦 Family Analysis — Семьи моделей
+
+Бот автоматически группирует модели по семействам:
+
+| Семейство | Лучшее использование | Примеры моделей |
+|-----------|---------------------|----------------|
+| **Qwen** | Многоязычие, кодинг | qwen-3-30b-a3b, qwen2.5-coder |
+| **DeepSeek** | Анализ, рассуждения | deepseek-r1, deepseek-v4 |
+| **Mistral** | Агенты, инструменты | mistral-small, magistral |
+| **Google** | Гибкость, long-context | gemini-2.0-flash, gemma |
+| **Anthropic** | Долгие диалоги | claude-3.5-sonnet, opus |
+| **Meta** | Открытый код | llama-3.3, llama-4 |
+
+---
+
+## 🏆 Personal Rankings
+
+Субъективные оценки моделей по критериям (от 1 до 5 звёзд):
+
+**Лучшие Free модели:**
+- ⭐⭐⭐⭐⭐ `deepseek/deepseek-r1:free` — рассуждения, анализ
+- ⭐⭐⭐⭐☆ `google/gemini-2.0-flash-exp:free` — скорость, креатив
+- ⭐⭐⭐⭐☆ `qwen/qwen-3-30b-a3b:free` — код, многоязычие
+
+**Лучшие Paid модели:**
+- ⭐⭐⭐⭐⭐ `anthropic/claude-3.5-sonnet` — универсальная
+- ⭐⭐⭐⭐☆ `openai/gpt-4o` — стабильность
+- ⭐⭐⭐⭐☆ `google/gemini-2.0-flash` — скорость/цена
+
+---
+
+## 📊 ROI и экономия
+
+**Текущие затраты лаборатории:**
+- $2.50/1M токенов (среднее)
+
+**Экономия с FREE моделями:**
+- ROI: **10x** при правильном использовании
+- 9 проектов оптимизированы под FREE модели
+
+---
+
+## 🏷️ Технологический стек
+
+- 🐍 **Python 3.10+** — основа бота
+- 🤖 **aiogram** — Telegram Bot framework
+- 🔄 **aiohttp** — асинхронные запросы к API
+- 💾 **SQLite + FTS5** — кэш и история запросов
+- 🗄️ **JSON cache** — кэширование моделей (TTL 1 час)
+
+---
+
+## 🛡️ Безопасность
 
 ```bash
-# Убедитесь, что .env в .gitignore
+# Проверьте .env не в git
 echo ".env" >> .gitignore
 
-# Используйте только .env.example для примера
+# Используйте .env.example
 cat .env.example
-# OPENROUTER_API_KEY=your_key_here
-# TELEGRAM_BOT_TOKEN=your_bot_token_here
 ```
 
 ---
 
-## 🎨 Hero Image Prompt (Midjourney v7)
-
-Для замены заглушки используйте этот промпт:
-
-```
-/imagine prompt: Telegram bot interface on smartphone screen, AI chat visualization, neon purple and green glow, LLM model comparison cards, modern UI, dark theme, 8k resolution --ar 9:16 --v 7
-```
-
----
-
-## 🏷️ Tags
-
-`#TelegramBot` `#LLM` `#OpenRouter` `#AItools` `#LabDoctorM` `#Python` `#AutoReview` `#MoneyTools`
-
----
-
-## 📄 License
+## 📄 Лицензия
 
 MIT License + LabDoctorM Copyright © 2026
 
 ---
 
-**💰 Инвестируйте 2 минуты в настройку — экономьте часы каждую неделю на выборе LLM-моделей!**
+**💰 Инвестируйте 2 минуты в настройку — экономьте часы каждую неделю на выборе LLM!
