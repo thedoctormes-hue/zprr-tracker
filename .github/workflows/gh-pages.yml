@@ -23,29 +23,10 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Setup Python
-        uses: actions/setup-python@v6
-        with:
-          python-version: '3.11'
-
-      - name: Install docs dependencies
+      - name: Prepare site
         run: |
-          pip install mkdocs-material 2>/dev/null || true
-
-      - name: Build docs
-        run: |
-          if [ -f mkdocs.yml ]; then
-            mkdocs build
-            echo "site_dir=site" >> $GITHUB_OUTPUT
-          elif [ -d docs ]; then
-            mkdir -p _site
-            cp -r docs/* _site/
-          else
-            echo "No docs found, using root"
-            mkdir -p _site
-            cp -r . _site/
-            rm -rf _site/.git _site/.github _site/node_modules _site/venv _site/.venv
-          fi
+          mkdir -p _site
+          cp README.md _site/index.md 2>/dev/null || echo "# ZPRR Tracker" > _site/index.md
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
