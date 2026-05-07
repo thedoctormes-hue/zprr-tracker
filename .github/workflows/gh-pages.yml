@@ -36,16 +36,21 @@ jobs:
         run: |
           if [ -f mkdocs.yml ]; then
             mkdocs build
-          else
+            echo "site_dir=site" >> $GITHUB_OUTPUT
+          elif [ -d docs ]; then
             mkdir -p _site
-            cp -r docs/* _site/ 2>/dev/null || echo "No docs directory"
+            cp -r docs/* _site/
+          else
+            echo "No docs found, using root"
+            mkdir -p _site
+            cp -r . _site/
+            rm -rf _site/.git _site/.github _site/node_modules _site/venv _site/.venv
           fi
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: ./docs
+          path: ./_site
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v5
-
