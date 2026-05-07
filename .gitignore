@@ -67,3 +67,25 @@ Thumbs.db
 *.JPEG
 *.GIF
 *.WEBP
+
+# Large binary/data files
+*.db-wal
+*.db-shm
+**/models_cache.json
+**/models_full.json
+model_selector/
+
+# Archive directories
+archive/
+projects/github-premium/
+
+# Skeleton files
+Skeleton*
+*Skeleton*
+
+# VPN Florida site (separate repo)
+archive/vpn-florida-site/
+
+# package-lock.json (too large for CI)
+package-lock.json
+*/package-lock.json
